@@ -189,7 +189,7 @@ int main()
     int BLOCKS = 1;
 
     // Use dim3 structs for block and grid dimensions
-    dim3 threads(C->filas, C->filas);
+    dim3 threads(C->columnas, C->filas);
     //dim3 blocks(A->filas, B->columnas);
 
     // Launch kernel
