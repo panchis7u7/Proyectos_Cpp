@@ -139,13 +139,13 @@ int main()
 {
     srand(time(NULL));
     //Matriz A
-    Matrix* A = new Matrix(25, 25);
+    Matrix* A = new Matrix(30, 30);
     A->aleatorizarRango(0, 20);
     A->print();
     int* h_A = A->toVector();
 
     //Matriz B
-    Matrix* B = new Matrix(25, 20);
+    Matrix* B = new Matrix(30, 30);
     B->aleatorizarRango(0, 20);
     B->print();
     int* h_B = B->toVector();
