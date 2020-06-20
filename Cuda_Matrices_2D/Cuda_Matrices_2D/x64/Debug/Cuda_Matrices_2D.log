@@ -1,15 +1,1 @@
-﻿  Compiling CUDA source file kernel.cu...
-  
-  E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.0\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\bin\HostX86\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fdx64\Debug\vc142.pdb /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D\kernel.cu" 
-E:/Proyectos/C++/Cuda/Cuda_Matrices_2D/Cuda_Matrices_2D/kernel.cu(19): warning : variable "d_C" was declared but never referenced
-  
-E:/Proyectos/C++/Cuda/Cuda_Matrices_2D/Cuda_Matrices_2D/kernel.cu(22): warning : variable "pitch_C" was declared but never referenced
-  
-  kernel.cu
-E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D\Matrix.h(34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D\Matrix.h(42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D\Matrix.h(97): warning C4018: '<': signed/unsigned mismatch
-E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D\Matrix.h(99): warning C4018: '<': signed/unsigned mismatch
-E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\Cuda_Matrices_2D\Matrix.h(102): warning C4018: '<': signed/unsigned mismatch
-E:/Proyectos/C++/Cuda/Cuda_Matrices_2D/Cuda_Matrices_2D/kernel.cu(22): warning C4101: 'pitch_C': unreferenced local variable
-  Cuda_Matrices_2D.vcxproj -> E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\x64\Debug\Cuda_Matrices_2D.exe
+﻿  Cuda_Matrices_2D.vcxproj -> E:\Proyectos\C++\Cuda\Cuda_Matrices_2D\x64\Debug\Cuda_Matrices_2D.exe

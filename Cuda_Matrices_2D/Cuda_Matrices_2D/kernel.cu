@@ -1,25 +1,22 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include "Matrix.h"
-
 #include <stdio.h>
 
 int main()
 {  
-    Matrix* A = new Matrix(3,3);
+    Matrix<int>* A = new Matrix<int>(13,13);
     A->aleatorizarRango(0, 10);
     A->print();
 
-    Matrix* B = new Matrix(3, 2);
+    Matrix<int>* B = new Matrix<int>(3, 2);
     B->aleatorizarRango(0,10);
     B->print();
 
     float* d_A = nullptr;
     float* d_B = nullptr;
-    float* d_C = nullptr;
     size_t pitch_A;
     size_t pitch_B;
-    size_t pitch_C;
 
     if (cudaMallocPitch((void**)&d_A, &pitch_A, sizeof(float)*A->columnas, A->filas) != cudaSuccess)
         std::cout << "Error al crear memoria (A)." << std::endl;
@@ -31,8 +28,8 @@ int main()
     if (cudaMemcpy2D(d_B, pitch_B, B->datos, sizeof(float) * B->columnas, sizeof(float) * B->columnas, B->filas, cudaMemcpyHostToDevice) != cudaSuccess)
         std::cout << "Error al copiar en memoria (B)." << std::endl;
 
-    Matrix* D = new Matrix(3, 2);
-    if (cudaMemcpy2D(D->datos, sizeof(float) * D->columnas, d_B, pitch_B, sizeof(float) * B->columnas, B->filas, cudaMemcpyDeviceToHost) != cudaSuccess)
+    Matrix<int>* D = new Matrix<int>(A->filas, A->columnas);
+    if (cudaMemcpy2D(D->datos, sizeof(float) * D->columnas, d_A, pitch_A, sizeof(float) * A->columnas, A->filas, cudaMemcpyDeviceToHost) != cudaSuccess)
         std::cout << "Error al copiar en memoria (D)." << std::endl;
     D->print();
     return 0;

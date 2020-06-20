@@ -2,21 +2,24 @@
 
 // Uploaded by panchis7u7 ~ Sebastian Madrigal
 
-Matrix::Matrix(int filas, int columnas) {
+template<typename T>
+Matrix<T>::Matrix(int filas, int columnas) {
 	this->filas = filas;
 	this->columnas = columnas;
-	this->datos = new float* [this->filas];
-	for (size_t i = 0; i < this->filas; i++)
+	this->datos = new T* [this->filas];
+	for (int i = 0; i < this->filas; i++)
 	{
-		this->datos[i] = new float[this->columnas];
+		this->datos[i] = new T[this->columnas];
 	}
 }
 
-Matrix::Matrix() {
+template<typename T>
+Matrix<T>::Matrix() {
 	this->datos = alloc(0,0);
 }
 
-Matrix::~Matrix() {
+template<typename T>
+Matrix<T>::~Matrix() {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		delete[] datos[i];
@@ -24,18 +27,20 @@ Matrix::~Matrix() {
 	delete[] datos;
 }
 
-float** Matrix::alloc(int filas, int columnas) {
+template<typename T>
+T** Matrix<T>::alloc(int filas, int columnas) {
 	this->filas = filas;
 	this->columnas = columnas;
-	float** datos = new float* [this->filas];
+	T** datos = new T* [this->filas];
 	for (size_t i = 0; i < this->filas; i++)
 	{
-		datos[i] = new float[this->columnas];
+		datos[i] = new T[this->columnas];
 	}
 	return datos;
 }
 
-void Matrix::print() {
+template<typename T>
+void Matrix<T>::print() {
 	for (size_t i = 0; i < filas; i++)
 	{
 		std::cout << "|";
@@ -49,7 +54,8 @@ void Matrix::print() {
 	std::cout << std::endl;
 }
 
-void Matrix::suma(float n) {
+template<typename T>
+void Matrix<T>::suma(T n) {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this->columnas; j++)
@@ -58,29 +64,33 @@ void Matrix::suma(float n) {
 		}
 	}
 }
-void Matrix::aleatorizar() {
+
+template<typename T>
+void Matrix<T>::aleatorizar() {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this->columnas; j++)
 		{
 			//Genera numero aleatorio entre -1 y 1
-			this->datos[i][j] = (-1) + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (1 - (-1)))); 
+			this->datos[i][j] = (-1) + static_cast <T> (rand()) / (static_cast <T> (RAND_MAX / (1 - (-1)))); 
 		}
 	}
 }
 
-void Matrix::aleatorizarRango(int rango1, int rango2) {
+template<typename T>
+void Matrix<T>::aleatorizarRango(T rango1, T rango2) {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this->columnas; j++)
 		{
 			//Genera numero aleatorio entre -1 y 1
-			this->datos[i][j] = (rango1)+static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (rango2 - (-1))));
+			this->datos[i][j] = (rango1)+static_cast <T> (rand()) / (static_cast <T> (RAND_MAX / (rango2 - (-1))));
 		}
 	}
 }
 
-void Matrix::suma(Matrix* sumando) {
+template<typename T>
+void Matrix<T>::suma(Matrix* sumando) {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this-> columnas; j++)
@@ -90,7 +100,8 @@ void Matrix::suma(Matrix* sumando) {
 	}
 }
 
-void Matrix::productoScalar(float n) {
+template<typename T>
+void Matrix<T>::productoScalar(T n) {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this->columnas; j++)
@@ -100,7 +111,8 @@ void Matrix::productoScalar(float n) {
 	}
 }
 
-void Matrix::productoHadamard(Matrix* A) {
+template<typename T>
+void Matrix<T>::productoHadamard(Matrix* A) {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this->columnas; j++)
@@ -110,8 +122,9 @@ void Matrix::productoHadamard(Matrix* A) {
 	}
 }
 
-int* Matrix::toVector() {
-	int* res = new int[this->filas * this->columnas];
+template<typename T>
+T* Matrix<T>::toVector() {
+	T* res = new T[this->filas * this->columnas];
 	int k = 0;
 	for (int i = 0; i < this->filas; i++)
 	{
@@ -124,7 +137,8 @@ int* Matrix::toVector() {
 	return res;
 }
 
-void Matrix::map(float (*func)(float)) {
+template<typename T>
+void Matrix<T>::map(T (*func)(T)) {
 	for (size_t i = 0; i < this->filas; i++)
 	{
 		for (size_t j = 0; j < this->columnas; j++)
@@ -133,3 +147,7 @@ void Matrix::map(float (*func)(float)) {
 		}
 	}
 }
+
+template class Matrix<int>;
+template class Matrix<float>;
+template class Matrix<double>;
